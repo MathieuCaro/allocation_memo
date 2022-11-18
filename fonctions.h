@@ -2,6 +2,7 @@
 #define ALLOC_H
 
 #define SIZE_TAB 128
+//#define SIZE_TAB_INIT_FREE 127
 #define FREE_BLOCK -1
 #define INIT_VAL 0
 

@@ -7,8 +7,8 @@
 
 void init(void){
     libre=0;
-    tas[0]=127;
-    tas[1]=-1;
+    tas[0]=SIZE_TAB-1;
+    tas[1]=FREE_BLOCK;
     for(int i=2;i<128;i++){
         tas[i]=0;
     }
@@ -27,7 +27,7 @@ int index_libre(int taille){
 
 char *tas_malloc(unsigned int taille){
     int index=index_libre(taille);
-    if(index==-1){
+    if(index==FREE_BLOCK){
         return NULL;
     }
     int taille_zone_libre=tas[index];
@@ -39,7 +39,7 @@ char *tas_malloc(unsigned int taille){
     }
     if(taille_zone_libre>taille+1){
         tas[index]=taille;
-        tas[index+1]=0;
+        tas[index+1]=INIT_VAL;
         tas[index+taille+1]=(char)(taille_zone_libre-taille-1);
         tas[index+taille+2]=-1;
     }
